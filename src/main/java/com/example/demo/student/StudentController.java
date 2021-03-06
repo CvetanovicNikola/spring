@@ -26,8 +26,13 @@ public class StudentController {
 		this.studentService = studentService;
 	}
 
-	@GetMapping(path = "/get" , produces = {"application/xml"})
+	@GetMapping(path = "/get_students" , produces = {"application/xml"})
 	public List<Student> getStudents() {
+		return studentService.getStudents();
+	}
+	
+	@GetMapping(path = "/get" )
+	public List<Student> getStudent() {
 		return studentService.getStudents();
 	}
 	
