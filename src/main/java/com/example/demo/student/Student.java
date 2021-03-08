@@ -2,7 +2,6 @@ package com.example.demo.student;
 
 import java.time.LocalDate;
 import java.time.Period;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +11,11 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @Entity
 @Table
+@JacksonXmlRootElement(localName = "student")
 public class Student {
 	@Id
 	@SequenceGenerator(

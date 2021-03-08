@@ -1,6 +1,9 @@
 package com.example.demo.student;
 
 import java.util.List;
+
+import javax.xml.bind.annotation.XmlElement;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,16 +28,20 @@ public class StudentController {
 		super();
 		this.studentService = studentService;
 	}
-
-	@GetMapping(path = "/get_students" , produces = {"application/xml"})
-	public List<Student> getStudents() {
+	@GetMapping(path = "/get/{studentId}", produces = {"application/xml"})
+	public Student getStudent(@PathVariable("studentId") long studentId) {
+		return studentService.getStudent(studentId);
+	}
+	
+	@GetMapping(path = "/get_students", produces = {"application/xml"})
+	public Students getStudents() {
 		return studentService.getStudents();
 	}
 	
-	@GetMapping(path = "/get" )
-	public List<Student> getStudent() {
-		return studentService.getStudents();
-	}
+//	@GetMapping(path = "/get" )
+//	public List<Student> getStudent() {
+//		return studentService.getStudents();
+//	}
 	
 	@PostMapping(path = "/create")
 	public void registerStudent(@RequestBody Student student) {

@@ -12,21 +12,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sun.xml.txw2.annotation.XmlElement;
+
 @Service
 public class StudentService {
 	
 	private final StudnetRepository studentRepository;
-	
-	
 	
 	public StudentService(StudnetRepository studentRepository) {
 		super();
 		this.studentRepository = studentRepository;
 	}
 
+	public Student getStudent(long studentId) {
+		return studentRepository.findById(studentId).get();
+	}
 	
-	public List<Student> getStudents() {
-		return studentRepository.findAll();
+	public Students getStudents() {
+		var students = new Students(studentRepository.findAll());
+		return students;
 	}
 
 	public void addNewStudent(Student student) {
